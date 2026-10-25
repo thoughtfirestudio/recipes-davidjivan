@@ -60,6 +60,14 @@ app.get('/api/recipes/:slug/macros', (req, res) => {
   } catch { res.status(500).json({ error: 'failed to load macros' }); }
 });
 
+app.get('/api/docs', (req, res) => {
+  const docsPath = path.join(__dirname, 'API.md');
+  if (!fs.existsSync(docsPath)) return res.status(404).json({ error: 'docs not found' });
+  const md = fs.readFileSync(docsPath, 'utf8');
+  res.set('Content-Type', 'text/markdown; charset=utf-8');
+  res.send(md);
+});
+
 app.use(express.static(__dirname));
 
 app.get('*', (req, res) => {
