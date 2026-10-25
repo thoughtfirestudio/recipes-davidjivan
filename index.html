@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>recipes — David Jivan</title>
+<meta name="description" content="David Jivan's recipe box — real food for a traveling family.">
+<link rel="canonical" href="https://recipes.davidjivan.net/">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a class="topbar-logo" href="#/" id="topbar-logo">recipes</a>
+  <span class="topbar-url" id="topbar-url">recipes.davidjivan.net</span>
+  <button class="topbar-back" id="back-btn" style="display:none">&larr; all recipes</button>
+</div>
+
+<main id="app"></main>
+
+<script>
+const STATE = { view: 'list', recipes: [], manifest: [], slug: '' };
+
+function slugify(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+async function loadManifest() {
+  const r = await fetch('recipes/index.json');
+  if (!r.ok) throw new Error('Failed to load recipe index');
+  return r.json();
+}
+
+async function loadRecipe(slug) {
+  const r = await fetch('recipes/' + slug + '.json');
+  if (!r.ok) throw new Error('Failed to load recipe');
+  return r.json();
+}
+
+function render() {
+  const hash = location.hash.replace(/^#\/?/, '') || '';
+  if (hash && hash !== 'list') {
+    showRecipe(hash);
+  } else {
+    showList();
+  }
+}
+
+function showList(filter) {
+  STATE.view = 'list';
+  document.getElementById('back-btn').style.display = 'none';
+  document.getElementById('topbar-logo').textContent = 'recipes';
+  const app = document.getElementById('app');
+
+  const items = filter
+    ? STATE.manifest.filter(r => {
+        const q = filter.toLowerCase();
+        return r.name.toLowerCase().includes(q)
+          || (r.tags || []).some(t => t.toLowerCase().includes(q));
+      })
+    : STATE.manifest;
+
+  const searchVal = filter || '';
+
+  let html = '<div class="list-view">';
+  html += '<div class="search-wrap">';
+  html += '<input class="search-input" type="text" placeholder="search recipes\u2026" value="' + esc(searchVal) + '" id="search-input">';
+  html += '</div>';
+  html += '<div class="recipe-grid" id="recipe-grid">';
+  if (items.length === 0) {
+    html += '<div class="empty-state">no recipes match that search</div>';
+  }
+  for (const r of items) {
+    html += '<div class="recipe-card" data-slug="' + esc(r.slug) + '">';
+    html += '<div class="recipe-card-name">' + esc(r.name) + '</div>';
+    html += '<div class="recipe-card-meta">';
+    if (r.yield) html += '<span>' + r.yield + (r.yieldUnit ? ' ' + r.yieldUnit : '') + '</span>';
+    if (r.ovenTempF) html += '<span>' + r.ovenTempF + '\u00b0F</span>';
+    if (r.bakeTimeMin) html += '<span>' + r.bakeTimeMin + ' min</span>';
+    html += '</div>';
+    if (r.tags && r.tags.length) {
+      html += '<div class="recipe-card-tags">';
+      for (const t of r.tags) html += '<span class="tag">' + esc(t) + '</span>';
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+  html += '</div></div>';
+  app.innerHTML = html;
+
+  const input = document.getElementById('search-input');
+  if (input) {
+    input.addEventListener('input', function() {
+      showList(this.value);
+    });
+    if (!filter) input.focus();
+  }
+
+  document.querySelectorAll('.recipe-card').forEach(el => {
+    el.addEventListener('click', function() {
+      location.hash = '#/' + this.dataset.slug;
+    });
+  });
+}
+
+async function showRecipe(slug) {
+  STATE.slug = slug;
+  STATE.view = 'detail';
+  document.getElementById('back-btn').style.display = 'inline';
+  document.getElementById('topbar-logo').textContent = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+  const app = document.getElementById('app');
+  app.innerHTML = '<div class="detail-view" style="text-align:center;padding-top:40px;color:var(--mute);font-family:var(--data);font-size:14px;">loading\u2026</div>';
+
+  try {
+    const data = await loadRecipe(slug);
+    renderRecipe(data.recipe);
+  } catch (e) {
+    app.innerHTML = '<div class="detail-view"><div class="empty-state">recipe not found</div></div>';
+  }
+}
+
+function renderRecipe(r) {
+  const app = document.getElementById('app');
+  let html = '<div class="detail-view">';
+
+  html += '<div class="recipe-head">';
+  html += '<h1 class="recipe-name">' + esc(r.name) + '</h1>';
+  html += '<div class="recipe-quick-info">';
+  if (r.yield) {
+    let yieldText = 'yield: ' + r.yield.count;
+    if (r.yield.pan) yieldText += ' (' + r.yield.pan + ')';
+    html += '<span>' + esc(yieldText) + '</span>';
+  }
+  if (r.ovenTempF) html += '<span>' + r.ovenTempF + '\u00b0F</span>';
+  if (r.bakeTime) {
+    let bt = r.bakeTime.doneMin + ' min';
+    if (r.bakeTime.startCheckingMin) bt = 'check at ' + r.bakeTime.startCheckingMin + ', done ' + bt;
+    html += '<span>' + esc(bt) + '</span>';
+  }
+  html += '</div>';
+  if (r.tags && r.tags.length) {
+    html += '<div class="recipe-card-tags" style="margin-top:10px;">';
+    for (const t of r.tags) html += '<span class="tag">' + esc(t) + '</span>';
+    html += '</div>';
+  }
+  html += '</div>';
+
+  if (r.ingredients) {
+    html += '<div class="recipe-section">';
+    html += '<div class="recipe-section-title">ingredients</div>';
+    for (const [groupName, items] of Object.entries(r.ingredients)) {
+      if (!Array.isArray(items)) continue;
+      html += '<div class="ingredient-group">';
+      html += '<div class="ingredient-group-label">' + esc(groupName) + '</div>';
+      html += '<ul class="ingredient-list">';
+      for (const ing of items) {
+        html += '<li class="ingredient-item">';
+        if (ing.amount) html += '<span class="ingredient-amount">' + esc(ing.amount) + '</span>';
+        html += '<span>' + esc(ing.item);
+        if (ing.optional) html += ' <span class="ingredient-optional">optional</span>';
+        html += '</span>';
+        html += '</li>';
+        if (ing.note) html += '<li class="ingredient-item"><span class="ingredient-note">\u2014 ' + esc(ing.note) + '</span></li>';
+      }
+      html += '</ul></div>';
+    }
+    html += '</div>';
+  }
+
+  if (r.steps) {
+    html += '<div class="recipe-section">';
+    html += '<div class="recipe-section-title">steps</div>';
+    html += '<ol class="steps-list">';
+    for (const step of r.steps) {
+      html += '<li class="step-item">' + esc(step) + '</li>';
+    }
+    html += '</ol></div>';
+  }
+
+  const knownKeys = new Set(['name', 'slug', 'tags', 'yield', 'ovenTempF', 'bakeTime', 'ingredients', 'steps']);
+  const customFields = {};
+  for (const [key, val] of Object.entries(r)) {
+    if (!knownKeys.has(key)) customFields[key] = val;
+  }
+
+  for (const [key, val] of Object.entries(customFields)) {
+    html += '<div class="recipe-section">';
+    html += '<div class="recipe-section-title">' + esc(key.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</div>';
+    html += renderCustomField(key, val);
+    html += '</div>';
+  }
+
+  html += '</div>';
+  app.innerHTML = html;
+}
+
+function renderCustomField(key, val) {
+  if (typeof val === 'string') {
+    return '<div class="storage-note">' + esc(val) + '</div>';
+  }
+  if (Array.isArray(val)) {
+    if (val.every(v => typeof v === 'string')) {
+      return '<div class="allergens-list">' + val.map(v => '<span class="allergen-chip">' + esc(v) + '</span>').join('') + '</div>';
+    }
+    return '<div class="custom-field">' + val.map(v => '<div class="custom-field-body">' + renderObject(v) + '</div>').join('') + '</div>';
+  }
+  if (typeof val === 'object' && val !== null) {
+    const entries = Object.entries(val);
+    if (isMacroData(val)) {
+      return renderMacroTable(val);
+    }
+    if (entries.every(([, v]) => typeof v === 'string')) {
+      return '<div class="custom-field">' + entries.map(([k, v]) => {
+        return '<div class="custom-field-title">' + esc(k.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</div>'
+          + '<div class="custom-field-body">' + esc(v) + '</div>';
+      }).join('') + '</div>';
+    }
+    if (entries.every(([, v]) => typeof v === 'object' && v !== null && !Array.isArray(v))) {
+      return entries.map(([k, v]) => {
+        if (isMacroData(v)) {
+          return '<div class="custom-field-title" style="margin-top:12px;">' + esc(k.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</div>' + renderMacroTable(v);
+        }
+        return '<div class="custom-field" style="margin-bottom:12px;">'
+          + '<div class="custom-field-title">' + esc(k.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</div>'
+          + '<div class="custom-field-body">' + esc(JSON.stringify(v, null, 2)) + '</div></div>';
+      }).join('');
+    }
+    return '<div class="custom-field">' + entries.map(([k, v]) => {
+      return '<div class="custom-field-title">' + esc(k.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</div>'
+        + '<div class="custom-field-body">' + (typeof v === 'object' ? esc(JSON.stringify(v, null, 2)) : esc(String(v))) + '</div>';
+    }).join('') + '</div>';
+  }
+  return '<div class="custom-field-body">' + esc(String(val)) + '</div>';
+}
+
+function isMacroData(obj) {
+  if (typeof obj !== 'object' || obj === null) return false;
+  const entries = Object.entries(obj);
+  if (entries.length === 0) return false;
+
+  const nonStringEntries = entries.filter(([, v]) => typeof v !== 'string');
+  if (nonStringEntries.length === 0) return false;
+
+  const objectEntries = nonStringEntries.filter(([, v]) => typeof v === 'object' && v !== null && !Array.isArray(v));
+  const numberEntries = nonStringEntries.filter(([, v]) => typeof v === 'number');
+
+  if (objectEntries.length > 0 && objectEntries.every(([, v]) => v.calories !== undefined)) {
+    return true;
+  }
+  if (numberEntries.length > 0) {
+    const keys = new Set(entries.map(([k]) => k));
+    return keys.has('calories') || keys.has('protein_g') || keys.has('carbs_g') || keys.has('fat_g');
+  }
+  return false;
+}
+
+function renderMacroTable(obj) {
+  const versions = Object.entries(obj).filter(([k, v]) => typeof v === 'object' && v !== null && 'calories' in v);
+  if (versions.length === 0) {
+    if (obj.calories !== undefined) {
+      return '<table class="macro-table"><tbody>'
+        + '<tr><td>calories</td><td>' + obj.calories + '</td></tr>'
+        + '<tr><td>protein</td><td>' + (obj.protein_g || 0) + 'g</td></tr>'
+        + '<tr><td>carbs</td><td>' + (obj.carbs_g || 0) + 'g</td></tr>'
+        + '<tr><td>fat</td><td>' + (obj.fat_g || 0) + 'g</td></tr>'
+        + (obj.notes ? '<tr><td colspan="2" style="color:var(--mute);font-size:11px;">' + esc(obj.notes) + '</td></tr>' : '')
+        + '</tbody></table>';
+    }
+    return '<div class="custom-field-body">' + esc(JSON.stringify(obj, null, 2)) + '</div>';
+  }
+
+  let tbl = '<table class="macro-table"><thead><tr><th></th>';
+  for (const [name] of versions) tbl += '<th>' + esc(name.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</th>';
+  tbl += '</tr></thead><tbody>';
+  const metrics = [
+    { key: 'calories', label: 'calories', suffix: '' },
+    { key: 'protein_g', label: 'protein', suffix: 'g' },
+    { key: 'carbs_g', label: 'carbs', suffix: 'g' },
+    { key: 'fat_g', label: 'fat', suffix: 'g' },
+  ];
+  for (const m of metrics) {
+    tbl += '<tr><td>' + m.label + '</td>';
+    for (const [, v] of versions) tbl += '<td>' + (v[m.key] || 0) + m.suffix + '</td>';
+    tbl += '</tr>';
+  }
+  tbl += '</tbody></table>';
+  if (obj.notes) tbl += '<div style="font-family:var(--data);font-size:11px;color:var(--mute);margin-top:8px;">' + esc(obj.notes) + '</div>';
+  return tbl;
+}
+
+function renderObject(obj) {
+  if (typeof obj === 'string') return esc(obj);
+  if (typeof obj === 'number' || typeof obj === 'boolean') return String(obj);
+  return '<pre style="font-family:var(--data);font-size:13px;white-space:pre-wrap;color:var(--mute);">' + esc(JSON.stringify(obj, null, 2)) + '</pre>';
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+window.addEventListener('hashchange', render);
+
+loadManifest().then(m => {
+  STATE.manifest = m;
+  render();
+}).catch(e => {
+  document.getElementById('app').innerHTML = '<div class="list-view"><div class="empty-state">failed to load recipes</div></div>';
+});
+</script>
+</body>
+</html>

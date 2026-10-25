@@ -1,0 +1,60 @@
+{
+  "recipe": {
+    "name": "Double Pumpkin Muffins",
+    "slug": "double-pumpkin-muffins",
+    "tags": ["breakfast", "muffins", "pumpkin", "high-protein"],
+    "yield": {
+      "count": 24,
+      "pan": "standard 12-cup muffin tin, two trays"
+    },
+    "ovenTempF": 350,
+    "bakeTime": {
+      "startCheckingMin": 18,
+      "doneMin": "18-22"
+    },
+    "ingredients": {
+      "dry": [
+        { "item": "rolled oats", "amount": "3 1/2 cups", "note": "Measure before blending. Blend all for smooth muffins, or blend half and leave half whole for texture. See oatSwap below for the higher-protein version." },
+        { "item": "all-purpose flour", "amount": "1 1/2 cups" },
+        { "item": "baking powder", "amount": "2 tsp" },
+        { "item": "baking soda", "amount": "1 tsp" },
+        { "item": "salt", "amount": "1 tsp" },
+        { "item": "cinnamon", "amount": "2 tsp" }
+      ],
+      "wet": [
+        { "item": "plain Greek yogurt", "amount": "1 container (24 oz, about 2.6 cups)" },
+        { "item": "canned pumpkin puree", "amount": "1 can (15 oz)" },
+        { "item": "large eggs", "amount": "4" },
+        { "item": "maple syrup or honey", "amount": "4 tbsp", "optional": true },
+        { "item": "vanilla extract", "amount": "2 tsp" },
+        { "item": "milk", "amount": "0 to 1/2 cup", "optional": true, "note": "Add 1 tbsp at a time only if batter is too thick" }
+      ],
+      "foldIns": [
+        { "item": "mini chocolate chips", "amount": "1/2 cup" }
+      ]
+    },
+    "oatSwap": {
+      "wholeFoodVersion": "Use 3 1/2 cups rolled oats total. No protein powder.",
+      "proteinVersion": "Use 2 cups rolled oats + 4 scoops vanilla protein powder (add the powder with the dry ingredients). Same wet ingredients and fold-ins.",
+      "rule": "Oat flour = blended oats. No separate oat flour needed."
+    },
+    "steps": [
+      "Heat oven to 350F. Grease or line 24 muffin cups.",
+      "In one large bowl, stir together all dry ingredients. Make a well in the center.",
+      "Add all wet ingredients to the well.",
+      "Mix until just combined; do not overmix.",
+      "Fold in mini chocolate chips.",
+      "If batter is too thick, add milk 1 tbsp at a time, up to 1/2 cup.",
+      "Scoop batter into the 24 muffin cups.",
+      "Bake 18-22 minutes, starting to check at 18 minutes. Done when a toothpick comes out clean-ish.",
+      "Cool 5-10 minutes before removing from the pan."
+    ],
+    "macrosPerMuffin": {
+      "wholeFoodVersion": { "calories": 140, "protein_g": 7.5, "carbs_g": 21, "fat_g": 3 },
+      "proteinVersion": { "calories": 145, "protein_g": 9, "carbs_g": 20, "fat_g": 3 },
+      "notes": "Estimates. With optional syrup included. Vary by brand."
+    },
+    "allergens": ["wheat", "milk", "egg", "soy (protein version only)"],
+    "storage": "Fridge up to 4 days; freeze 2-3 months."
+  }
+}
