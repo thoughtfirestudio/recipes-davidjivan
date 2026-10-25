@@ -157,6 +157,22 @@ body {
   flex-wrap: wrap;
 }
 
+.copy-btn {
+  font-family: var(--data);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brass);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 3px 10px;
+  transition: all var(--dur);
+}
+
+.copy-btn:hover { background: var(--panel2); border-color: var(--line-strong); }
+.copy-btn--done { color: var(--bg); background: var(--brass); border-color: var(--brass); }
+
 .recipe-section {
   margin-bottom: 32px;
 }

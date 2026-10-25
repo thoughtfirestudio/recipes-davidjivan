@@ -185,8 +185,13 @@ function renderRecipe(r) {
   }
 
   for (const [key, val] of Object.entries(customFields)) {
+    const isMacro = isMacroData(val);
+    const copyData = isMacro ? buildMacroCopyText(key, val) : '';
     html += '<div class="recipe-section">';
-    html += '<div class="recipe-section-title">' + esc(key.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</div>';
+    html += '<div class="recipe-section-title" style="display:flex;align-items:center;justify-content:space-between;">';
+    html += '<span>' + esc(key.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase())) + '</span>';
+    if (copyData) html += '<button class="copy-btn" data-copy="' + esc(copyData) + '" onclick="copyMacros(this)">copy</button>';
+    html += '</div>';
     html += renderCustomField(key, val);
     html += '</div>';
   }
@@ -299,6 +304,52 @@ function esc(s) {
   const d = document.createElement('div');
   d.textContent = s;
   return d.innerHTML;
+}
+
+function buildMacroCopyText(key, val) {
+  var lines = [];
+  var entries = Object.entries(val).filter(function(e) { return typeof e[1] === 'object' && e[1] !== null && e[1].calories !== undefined; });
+  if (entries.length > 1) {
+    var metrics = ['calories', 'protein_g', 'carbs_g', 'fat_g'];
+    for (var m of metrics) {
+      var label = m.replace('_g', '');
+      var vals = entries.map(function(e) { return e[1][m] || 0; });
+      lines.push(label + ': ' + vals.join(' / '));
+    }
+    var header = entries.map(function(e) { return e[0].replace(/([A-Z])/g, ' $1').trim(); }).join(' vs ');
+    lines.unshift(header);
+  } else if (entries.length === 1) {
+    var m = entries[0][1];
+    if (m.calories) lines.push(m.calories + ' cal');
+    if (m.protein_g) lines.push(m.protein_g + 'g protein');
+    if (m.carbs_g) lines.push(m.carbs_g + 'g carbs');
+    if (m.fat_g) lines.push(m.fat_g + 'g fat');
+    if (m.notes) lines.push(m.notes);
+  } else if (val.calories !== undefined) {
+    if (val.calories) lines.push(val.calories + ' cal');
+    if (val.protein_g) lines.push(val.protein_g + 'g protein');
+    if (val.carbs_g) lines.push(val.carbs_g + 'g carbs');
+    if (val.fat_g) lines.push(val.fat_g + 'g fat');
+  }
+  if (val.notes && typeof val.notes === 'string') lines.push(val.notes);
+  if (val.yield && val.yield.count) lines.push('yield: ' + val.yield.count);
+  var label = key.replace(/([A-Z])/g, ' $1').replace(/^./, function(c) { return c.toUpperCase(); });
+  lines.unshift(label + ':');
+  return lines.join('\n');
+}
+
+function copyMacros(btn) {
+  var text = btn.getAttribute('data-copy');
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'copied';
+    btn.classList.add('copy-btn--done');
+    setTimeout(function() {
+      btn.textContent = 'copy';
+      btn.classList.remove('copy-btn--done');
+    }, 2000);
+  }).catch(function() {
+    btn.textContent = 'error';
+  });
 }
 
 window.addEventListener('hashchange', render);
