@@ -3,7 +3,7 @@
     "name": "High-Protein Chicken and Beef Cottage Cheese Meatballs",
     "slug": "high-protein-chicken-beef-cottage-cheese-meatballs",
     "tags": ["high-protein", "freezer-friendly", "meal-prep", "kid-friendly", "no-microwave-reheat"],
-    "yield": { "count": 24, "pan": "two sheet pans, parchment-lined", "note": "Estimate at ~2 oz per meatball. Actual count depends on your scoop size — weigh or count and recalculate macros by weight if needed." },
+    "yield": { "count": 30, "pan": "two sheet pans, parchment-lined", "note": "With the scoop size we have. Weigh or count, and recalculate macros by weight if your scoop differs." },
     "ovenTempF": 400,
     "bakeTime": { "startCheckingMin": 20, "doneMin": "20-25" },
     "ingredients": {
@@ -25,15 +25,15 @@
       "Mix chicken, beef, eggs, cottage cheese, shredded cheese, and seasoning until just combined. Do not overwork it.",
       "Add 1 1/2 cups panko. Mix until just combined. Squeeze a handful — if it holds together, stop. If it is wet and slumping, add the remaining panko 1/4 cup at a time.",
       "If the mix feels loose, chill 15-20 minutes before scooping.",
-      "Scoop into meatballs across the two pans. Aim for about 2 oz each for roughly 24 meatballs.",
+      "Scoop into 30 meatballs across the two pans.",
       "Bake 20-25 minutes until internal temp reaches 165F. Rotate pans halfway through.",
       "Cool completely before storing."
     ],
     "allergens": ["milk", "egg", "wheat (if using panko)"],
     "storage": "Fridge up to 4 days in an airtight container. Freeze up to 3 months — freeze on a sheet pan first, then bag so they don't stick.",
     "reheat": "From frozen: oven 350F for 15-20 min. From thawed: skillet over medium heat 4-5 min, turning once. Also good cold.",
-    "macrosPerMeatball": { "calories": 155, "protein_g": 15, "carbs_g": 4.5, "fat_g": 8, "notes": "At 24 meatballs (~2 oz each) with 2 cups panko. At 1 1/2 cups panko: ~150 cal, 15g protein, 3.5g carbs, 8g fat. Macros scale linearly by weight — weigh a meatball if your scoop differs." },
-    "macrosPerServing": { "calories": 620, "protein_g": 60, "carbs_g": 18, "fat_g": 32, "notes": "4 meatballs per serving at 2 oz each." },
+    "macrosPerMeatball": { "calories": 125, "protein_g": 12, "carbs_g": 3.5, "fat_g": 6.5, "notes": "At 30 meatballs with 2 cups panko. At 1 1/2 cups panko: ~120 cal, 12g protein, 2.5g carbs, 6.5g fat. Macros scale linearly by weight — weigh a meatball if your scoop differs." },
+    "macrosPerServing": { "calories": 500, "protein_g": 48, "carbs_g": 14, "fat_g": 26, "notes": "4 meatballs per serving." },
     "notes": "2 cups of cottage cheese for 3 lbs of meat is wetter than the original 2-lb recipe — panko is the binder and is not optional in this version. Panko range is 1 1/2 to 2 cups, added in stages. Mix stays soft; chill if loose before scooping. Doubles to 6 lbs meat with a third sheet pan."
   }
 }
