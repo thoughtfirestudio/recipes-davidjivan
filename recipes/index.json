@@ -16,5 +16,14 @@
     "bakeTimeMin": 22,
     "yield": 16,
     "yieldUnit": "meatballs"
+  },
+  {
+    "slug": "ham-and-cheese-egg-bites",
+    "name": "Ham and Cheese Egg Bites",
+    "tags": ["high-protein", "breakfast", "meal-prep", "freezer-friendly", "kid-friendly", "no-microwave-reheat"],
+    "ovenTempF": 300,
+    "bakeTimeMin": 35,
+    "yield": 24,
+    "yieldUnit": "bites"
   }
 ]

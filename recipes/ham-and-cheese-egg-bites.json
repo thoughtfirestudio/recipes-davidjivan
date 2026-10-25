@@ -1,0 +1,39 @@
+{
+  "recipe": {
+    "name": "Ham and Cheese Egg Bites",
+    "slug": "ham-and-cheese-egg-bites",
+    "tags": ["high-protein", "breakfast", "meal-prep", "freezer-friendly", "kid-friendly", "no-microwave-reheat"],
+    "yield": { "count": 24, "pan": "two 12-cup silicone muffin tins, baked one at a time" },
+    "ovenTempF": 300,
+    "bakeTime": { "startCheckingMin": 25, "doneMin": "25-35" },
+    "ingredients": {
+      "wet": [
+        { "item": "large eggs", "amount": "12" },
+        { "item": "cottage cheese", "amount": "1 1/2 cups", "note": "Or 1 1/2 cups plain Greek yogurt - macros essentially identical at 2%" }
+      ],
+      "dry": [
+        { "item": "shredded cheddar jack", "amount": "1 1/2 cups", "note": "About 6 oz - 3/4 of an 8 oz bag. Any good melting cheese works: cheddar, Monterey Jack, Colby Jack, or a cheddar jack blend" },
+        { "item": "cornstarch", "amount": "1 tbsp" },
+        { "item": "kosher salt", "amount": "1/2 tsp", "note": "Drop to 1/4 tsp if your ham is salty" },
+        { "item": "black pepper", "amount": "1/4 tsp" }
+      ],
+      "foldIns": [
+        { "item": "ham, diced small (1/4-inch)", "amount": "8 oz", "note": "Total for the batch - about 4 oz per tin. Optional: dry-saute 2-3 min first." }
+      ]
+    },
+    "steps": [
+      "Preheat oven to 300F. Optional: set a baking dish of hot water on the bottom rack for steam.",
+      "Dice the ham small. Divide evenly among the wells of tin 1.",
+      "Blend eggs, cottage cheese, shredded cheese, cornstarch, salt, and pepper 45 seconds until completely smooth.",
+      "Pour the egg mix over the ham, leaving a little room at the top.",
+      "Bake tin 1 for 25 minutes, until centers are just set and an instant-read thermometer reads 160F.",
+      "Rest 5-10 minutes, then pop the bites out and cool on a rack.",
+      "Fill tin 2 the same way and bake 25 minutes."
+    ],
+    "allergens": ["egg", "milk"],
+    "storage": "Fridge up to 4 days in an airtight container. Freeze up to 2 months - cool completely first.",
+    "reheat": "From fridge: oven 300F, covered, 8-10 min until 165F. From frozen: thaw overnight in the fridge, then reheat as above.",
+    "macrosPerBite": { "calories": 86, "protein_g": 8, "carbs_g": 1, "fat_g": 5, "notes": "Based on 2% cottage cheese and cheddar jack. 3 bites = ~258 cal, ~24g protein." },
+    "notes": "Silicone tins release without greasing in this kitchen - no water bath and no stirring between rounds needed either. Empty wells need no water. 1 1/2 cups cheese, not the whole 8 oz bag; save the rest."
+  }
+}
