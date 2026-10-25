@@ -9,7 +9,7 @@
     "ingredients": {
       "wet": [
         { "item": "large eggs", "amount": "12" },
-        { "item": "cottage cheese", "amount": "1 1/2 cups", "note": "Or 1 1/2 cups plain Greek yogurt - macros essentially identical at 2%" }
+        { "item": "cottage cheese", "amount": "2 cups", "note": "A standard 1 lb container. Or 2 cups plain Greek yogurt - macros essentially identical at 2%." }
       ],
       "dry": [
         { "item": "shredded cheddar jack", "amount": "1 1/2 cups", "note": "About 6 oz - 3/4 of an 8 oz bag. Any good melting cheese works: cheddar, Monterey Jack, Colby Jack, or a cheddar jack blend" },
@@ -33,7 +33,7 @@
     "allergens": ["egg", "milk"],
     "storage": "Fridge up to 4 days in an airtight container. Freeze up to 2 months - cool completely first.",
     "reheat": "From fridge: oven 300F, covered, 8-10 min until 165F. From frozen: thaw overnight in the fridge, then reheat as above.",
-    "macrosPerBite": { "calories": 86, "protein_g": 8, "carbs_g": 1, "fat_g": 5, "notes": "Based on 2% cottage cheese and cheddar jack. 3 bites = ~258 cal, ~24g protein." },
+    "macrosPerBite": { "calories": 90, "protein_g": 9, "carbs_g": 1, "fat_g": 5, "notes": "Based on 2% cottage cheese and cheddar jack. 3 bites = ~270 cal, ~27g protein." },
     "notes": "Silicone tins release without greasing in this kitchen - no water bath and no stirring between rounds needed either. Empty wells need no water. 1 1/2 cups cheese, not the whole 8 oz bag; save the rest."
   }
 }
