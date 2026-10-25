@@ -1,0 +1,36 @@
+{
+  "recipe": {
+    "name": "High-Protein Chicken Cottage Cheese Meatballs",
+    "slug": "high-protein-chicken-cottage-cheese-meatballs",
+    "tags": ["high-protein", "freezer-friendly", "meal-prep", "kid-friendly", "no-microwave-reheat", "gluten-free-option"],
+    "yield": { "count": 16, "pan": "sheet pan, parchment-lined" },
+    "ovenTempF": 400,
+    "bakeTime": { "startCheckingMin": 18, "doneMin": "18-22" },
+    "ingredients": {
+      "wet": [
+        { "item": "ground chicken", "amount": "2 lbs", "note": "90-93% lean is ideal; 99% lean will be dry" },
+        { "item": "large eggs", "amount": "2" },
+        { "item": "cottage cheese (2% or 4%)", "amount": "1/2 to 3/4 cup" }
+      ],
+      "dry": [
+        { "item": "pre-shredded Mexican blend or cheddar jack", "amount": "1/2 cup" },
+        { "item": "seasoning blend (carne asada, taco, or DIY)", "amount": "2 tbsp" },
+        { "item": "panko or crushed crackers", "amount": "1/2 to 3/4 cup", "optional": true, "note": "Start with 1/2 cup; add more if the mix feels wet" },
+        { "item": "kosher salt and black pepper", "amount": "to taste", "note": "Go light - seasoning, cottage cheese, and cheese are salty" }
+      ]
+    },
+    "steps": [
+      "Preheat oven to 400F. Line a sheet pan with parchment.",
+      "Mix chicken, eggs, cottage cheese, shredded cheese, seasoning, and panko until just combined. Do not overwork it.",
+      "Scoop into 16 even meatballs onto the pan. An ice cream or cookie scoop works best.",
+      "Bake 18-22 minutes until internal temp reaches 165F.",
+      "Cool completely before storing."
+    ],
+    "allergens": ["milk", "egg", "wheat (if using panko)"],
+    "storage": "Fridge up to 4 days in an airtight container. Freeze up to 3 months - freeze on a sheet pan first, then bag so they don't stick.",
+    "reheat": "From frozen: oven 350F for 15-20 min. From thawed: skillet over medium heat 4-5 min, turning once. Also good cold.",
+    "macrosPerMeatball": { "calories": 115, "protein_g": 13, "carbs_g": 1, "fat_g": 6, "notes": "Without panko. With 1/2 cup panko, add ~5-10 cal and ~1g carbs per meatball." },
+    "macrosPerServing": { "calories": 460, "protein_g": 52, "carbs_g": 2, "fat_g": 24, "notes": "4 meatballs per serving." },
+    "notes": "The mix is wet - that's normal. Chill 15-20 min if too loose to scoop. Doubles cleanly to 32 meatballs (4 lbs meat, two sheet pans, 20-25 min, rotate pans halfway)."
+  }
+}
