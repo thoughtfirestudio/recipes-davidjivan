@@ -5,7 +5,7 @@
     "tags": ["high-protein", "freezer-friendly", "meal-prep", "kid-friendly", "no-microwave-reheat"],
     "yield": { "count": 30, "pan": "two sheet pans, parchment-lined", "note": "With the scoop size we have. Weigh or count, and recalculate macros by weight if your scoop differs." },
     "ovenTempF": 400,
-    "bakeTime": { "startCheckingMin": 20, "doneMin": "20-25" },
+    "bakeTime": { "startCheckingMin": 25, "doneMin": "25-30" },
     "ingredients": {
       "wet": [
         { "item": "ground chicken", "amount": "2 lbs", "note": "90-93% lean is ideal; 99% lean will be dry" },
@@ -26,7 +26,7 @@
       "Add 1 1/2 cups panko. Mix until just combined. Squeeze a handful — if it holds together, stop. If it is wet and slumping, add the remaining panko 1/4 cup at a time.",
       "If the mix feels loose, chill 15-20 minutes before scooping.",
       "Scoop into 30 meatballs across the two pans.",
-      "Bake 20-25 minutes until internal temp reaches 165F. Rotate pans halfway through.",
+      "Bake 25-30 minutes until internal temp reaches 165F. Rotate pans halfway through.",
       "Cool completely before storing."
     ],
     "allergens": ["milk", "egg", "wheat (if using panko)"],
