@@ -1,7 +1,7 @@
 {
   "recipe": {
-    "name": "Double Pumpkin Muffins",
-    "slug": "double-pumpkin-muffins",
+    "name": "Pumpkin Muffins",
+    "slug": "pumpkin-muffins",
     "tags": ["breakfast", "muffins", "pumpkin", "high-protein"],
     "yield": {
       "count": 24,
@@ -40,9 +40,7 @@
     },
     "steps": [
       "Heat oven to 350F. Grease or line 24 muffin cups.",
-      "In one large bowl, stir together all dry ingredients. Make a well in the center.",
-      "Add all wet ingredients to the well.",
-      "Mix until just combined; do not overmix.",
+      "In a large bowl, stir together all dry ingredients. Add all wet ingredients and mix until just combined; do not overmix.",
       "Fold in mini chocolate chips.",
       "If batter is too thick, add milk 1 tbsp at a time, up to 1/2 cup.",
       "Scoop batter into the 24 muffin cups.",
