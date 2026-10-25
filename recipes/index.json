@@ -9,12 +9,12 @@
     "yieldUnit": "muffins"
   },
   {
-    "slug": "high-protein-chicken-cottage-cheese-meatballs",
-    "name": "High-Protein Chicken Cottage Cheese Meatballs",
-    "tags": ["high-protein", "freezer-friendly", "meal-prep", "kid-friendly", "no-microwave-reheat", "gluten-free-option"],
+    "slug": "high-protein-chicken-beef-cottage-cheese-meatballs",
+    "name": "High-Protein Chicken and Beef Cottage Cheese Meatballs",
+    "tags": ["high-protein", "freezer-friendly", "meal-prep", "kid-friendly", "no-microwave-reheat"],
     "ovenTempF": 400,
-    "bakeTimeMin": 22,
-    "yield": 16,
+    "bakeTimeMin": 25,
+    "yield": 24,
     "yieldUnit": "meatballs"
   },
   {

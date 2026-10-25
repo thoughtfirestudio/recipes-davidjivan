@@ -1,0 +1,39 @@
+{
+  "recipe": {
+    "name": "High-Protein Chicken and Beef Cottage Cheese Meatballs",
+    "slug": "high-protein-chicken-beef-cottage-cheese-meatballs",
+    "tags": ["high-protein", "freezer-friendly", "meal-prep", "kid-friendly", "no-microwave-reheat"],
+    "yield": { "count": 24, "pan": "two sheet pans, parchment-lined", "note": "Estimate at ~2 oz per meatball. Actual count depends on your scoop size — weigh or count and recalculate macros by weight if needed." },
+    "ovenTempF": 400,
+    "bakeTime": { "startCheckingMin": 20, "doneMin": "20-25" },
+    "ingredients": {
+      "wet": [
+        { "item": "ground chicken", "amount": "2 lbs", "note": "90-93% lean is ideal; 99% lean will be dry" },
+        { "item": "ground beef", "amount": "1 lb", "note": "90/10 recommended; 80/20 works but is greasier" },
+        { "item": "large eggs", "amount": "3" },
+        { "item": "cottage cheese (2% or 4%)", "amount": "2 cups", "note": "One 16 oz tub. This is a lot of moisture — see panko note." }
+      ],
+      "dry": [
+        { "item": "pre-shredded Mexican blend or cheddar jack", "amount": "3/4 cup" },
+        { "item": "seasoning blend (carne asada, taco, or DIY)", "amount": "3 tbsp" },
+        { "item": "panko or crushed crackers", "amount": "1 1/2 to 2 cups", "note": "Start with 1 1/2 cups. Add the remaining 1/2 cup only if the mix is still too wet to hold together — do not dump both cups in at once." },
+        { "item": "kosher salt and black pepper", "amount": "to taste", "note": "Go light — seasoning, cottage cheese, and cheese are all salty" }
+      ]
+    },
+    "steps": [
+      "Preheat oven to 400F. Line two sheet pans with parchment.",
+      "Mix chicken, beef, eggs, cottage cheese, shredded cheese, and seasoning until just combined. Do not overwork it.",
+      "Add 1 1/2 cups panko. Mix until just combined. Squeeze a handful — if it holds together, stop. If it is wet and slumping, add the remaining panko 1/4 cup at a time.",
+      "If the mix feels loose, chill 15-20 minutes before scooping.",
+      "Scoop into meatballs across the two pans. Aim for about 2 oz each for roughly 24 meatballs.",
+      "Bake 20-25 minutes until internal temp reaches 165F. Rotate pans halfway through.",
+      "Cool completely before storing."
+    ],
+    "allergens": ["milk", "egg", "wheat (if using panko)"],
+    "storage": "Fridge up to 4 days in an airtight container. Freeze up to 3 months — freeze on a sheet pan first, then bag so they don't stick.",
+    "reheat": "From frozen: oven 350F for 15-20 min. From thawed: skillet over medium heat 4-5 min, turning once. Also good cold.",
+    "macrosPerMeatball": { "calories": 155, "protein_g": 15, "carbs_g": 4.5, "fat_g": 8, "notes": "At 24 meatballs (~2 oz each) with 2 cups panko. At 1 1/2 cups panko: ~150 cal, 15g protein, 3.5g carbs, 8g fat. Macros scale linearly by weight — weigh a meatball if your scoop differs." },
+    "macrosPerServing": { "calories": 620, "protein_g": 60, "carbs_g": 18, "fat_g": 32, "notes": "4 meatballs per serving at 2 oz each." },
+    "notes": "2 cups of cottage cheese for 3 lbs of meat is wetter than the original 2-lb recipe — panko is the binder and is not optional in this version. Panko range is 1 1/2 to 2 cups, added in stages. Mix stays soft; chill if loose before scooping. Doubles to 6 lbs meat with a third sheet pan."
+  }
+}
